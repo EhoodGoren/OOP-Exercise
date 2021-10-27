@@ -1,29 +1,21 @@
 class Person {
+    #id;
     constructor(firstName, sureName, salary, age, id){
-        this.firstName = firstName;
-        this.sureName = sureName;
-        this.salary = salary;
-        this.age = age;
-        this.id = id;
+        this._firstName = firstName;
+        this._sureName = sureName;
+        this._salary = salary;
+        this._age = age;
+        this.#id = id;
     }
-    get firstName(){
-        return this.firstName;
-    }
-    get sureName(){
-        return this.sureName;
-    }
-    get getSalary(){
-        return this.salary;
-    }
-    get getAge(){
-        return this.age;
-    }
-    get getId(){
-        return this.id;
-    }
-    set setId(id){
-        this.id = id;
-    }
+
+    // Getters
+    get firstName(){ return this._firstName; }
+    get sureName(){ return this._sureName; }
+    get salary(){ return this._salary; }
+    get age(){ return this._age; }
+    get id(){ return this._id; }
+
+    // Setter
     set setSalary(salary){
         this.salary = salary;
     }
@@ -32,32 +24,48 @@ class Person {
 class Player extends Person {
     constructor(firstName, sureName, salary, age, id ,strongLeg, postion, celebrationSentence){
         super(firstName, sureName, salary, age, id);
-        this.strongLeg = strongLeg;
-        this.postion = postion;
-        this.celebrationSentence = celebrationSentence;
+        this._strongLeg = strongLeg;
+        this._postion = postion;
+        this._celebrationSentence = celebrationSentence;
     }
+    
+    // Getters
+    get strongLeg(){ return this._strongLeg }
+    get position(){ return this._postion }
+    get celebrationSentence(){ return this._celebrationSentence }
+    
+    // Setters
+    set setCelebrationSentence(celebrationSentence){
+        this._celebrationSentence = celebrationSentence;
+    }
+    set setPosition(position){
+        this._postion = position;
+    }
+
     goalCelebration(){
-        console.log(this.celebrationSentence);
-        this.salary = 1.025 * this.salary;
+        console.log(this._celebrationSentence);
+        this._salary = 1.025 * this._salary;
     }
-    get getStrongLeg(){ return this.strongLeg }
-    get getPosition(){ return this.postion }
-    get getCelebrationSentence(){ return this.celebrationSentence }
-    set setCelebrationSentence(celebrationSentence){ this.celebrationSentence = celebrationSentence }
-    set setPosition(position){ this.postion = position }
 }
 
 class GoalKeeper extends Person {
     constructor(firstName, sureName, salary, age, id, isLeftHanded, lastGoalConceded = Date()){
         super(firstName, sureName, salary, age, id);
-        this.isLeftHanded = isLeftHanded;
-        this.lastGoalConceded = lastGoalConceded;
+        this._isLeftHanded = isLeftHanded;
+        this._lastGoalConceded = lastGoalConceded;
     }
+
+    // Getters
+    get isLeftHanded(){ return this._isLeftHanded; }
+    get lastGoalConceded(){ return this._lastGoalConceded; }
+
+    // Setter
+    set setLastGoalConceded(time){
+        this._lastGoalConceded = time;
+    }
+
     concededAGoal(){
-        this.lastGoalConceded = Date();
-        this.salary = 0.975 * this.salary;
-    }
-    get getLastGoalConceded(){
-        return this.lastGoalConceded;
+        this._lastGoalConceded = Date();
+        this._salary = 0.975 * this._salary;
     }
 }
