@@ -1,59 +1,74 @@
 class ClassicGuitar {
+    #id;
     constructor(manufactureYear, brand, price, numberOfStrings = 6, id){
-        this.manufactureYear = manufactureYear // num
-        this.brand = brand // string
-        this.price = price // number
-        this.numberOfStrings = numberOfStrings //num
-        this.used = false;
-        this.id = id // private
+        this._manufactureYear = manufactureYear;
+        this._brand = brand;
+        this._price = price;
+        this._numberOfStrings = numberOfStrings;
+        this._used = false;
+        this.#id = id;
     }
     play(){
-        console.log("🎶🎶🎶");
-        this.price = this.price * 0.9;
-    }
-    get getPrice(){
-        return this.price;
+        this._price = this._price * 0.9;
+        return "🎶🎶🎶";
     }
 
+    // Getters
+    get manufactureYear(){ return this._manufactureYear; }
+    get brand(){ return this._brand; }
+    get price(){ return this._price; }
+    get numberOfStrings(){ return this._numberOfStrings; }
+    get id(){ return this.#id; }
+
+    // Setter
     set setPrice(price){
-        this.price = price;
+        this._price = price;
+        return this._price;
     }
 
-    get getManufactureYear(){
-        return this.manufactureYear;
-    }
-
-    get getBrand(){
-        return this.brand;
-    }
-
-    get getId(){
-        return this.id;
-    }
     static detectSound(sound){
-        return // Instrument type   
+        if(sound.includes("🔊")){
+            return "Classic guitar";
+        }
+        else if(sound.includes("🎸")){
+            return "Electric Guitar";
+        }
+        return;
     }
 }
+const myGuitar = new ClassicGuitar(2000, "Guitar A", 1500, undefined, 5);
 
 class ElectricGuitar extends ClassicGuitar{
     constructor(manufactureYear, brand, price, numberOfStrings = 6, id, longNeck){
-        super(manufactureYear, brand, price, numberOfStrings = 6, id);
+        super(manufactureYear, brand, price, numberOfStrings, id);
         this.longNeck = longNeck;
     }
     play(){
-        console.log("🎸🎸🎸");
+        return "🎸🎸🎸";
     }
 }
 
 class BassGuitar extends ClassicGuitar{
-    constructor(manufactureYear, brand, price, numberOfStrings = 6, id){
-        super(manufactureYear, brand, price, numberOfStrings = 4, id);
+    constructor(manufactureYear, brand, price, numberOfStrings = 4, id){
+        super(manufactureYear, brand, price, numberOfStrings, id);
     }
     playSolo(){
-        // Generate Sequence
-        return ( "💥", "🤘", "🎵", "📢", "💢", "🕺" );
+        const solo = generateSolo();
+        return solo;
     }
     play(){
-        console.log("🔊🔊🔊");
+        return "🔊🔊🔊";
     }
+}
+
+function generateSolo(){
+    const notes = [ "💥", "🤘", "🎵", "📢", "💢", "🕺" ]
+    let solo = "";
+    const notesNum = Math.floor(Math.random() * 10) + 5;
+    for (let i = 0; i < notesNum; i++) {
+        const randomNotePlace = Math.floor(Math.random() * 6);
+        const randomNote = notes[randomNotePlace];
+        solo = solo.concat(randomNote);
+    }
+    return solo;
 }
