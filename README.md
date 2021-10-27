@@ -1,0 +1,5 @@
+The 4 Pillars of OOP:
+1. Encapsulation - Instead of writing pieces of code all over the place, javascript allows us to create objects with properties(variables), and methods that work on these properties (using key word "this").
+2. Abstraction - Some of the said above properties and methods can be hidden in the object. This makes it easier to interact with these objects, since it is done with less methods. It also helps to reduce the impact of change if you want to change something in these objects, since changing hidden properties and methods in these objects won't affect any code outside of them.
+3. Inheritance - Javascript allows us to create objects that "inherit" properties and methods from a father object. This helps to reduce repeating code, since it doesn't have to be written again, just inherited from the father object.
+4. Polymorphism - Different elements can be created with a father object method, which will act differently for each of the elements. This creates different forms of the same object- with different properties.
